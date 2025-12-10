@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhupendra Jadhav | UI/UX & Motion Designer</title>
+    
+    <!-- External Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --bg-body: #050505;
+            --bg-card: #0e0e0e;
+            --text-main: #ffffff;
+            --text-muted: #9CA3AF;
+            --accent: #FCD5A3;        /* Beige/Gold Accent */
+            --accent-dark: #e0b47e;
+            --border: rgba(255, 255, 255, 0.08);
+            
+            --font-head: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            min-height: 100vh;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .main-container {
+            width: 95%;
+            max-width: 1400px;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem 4rem;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            border: 1px solid var(--border);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 3rem 0;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--text-main); }
+
+        .btn-cv {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .btn-cv:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* --- HERO SECTION --- */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        .hero-headline {
+            font-family: var(--font-head);
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 1.05;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-headline span { color: var(--text-muted); }
+
+        .hero-sub {
+            color: var(--text-muted);
+            max-width: 480px;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        .cta-group { display: flex; gap: 1rem; }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-3px); background-color: var(--accent-dark); }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex; align-items: center; gap: 8px;
+            transition: 0.3s;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: var(--text-main); }
+
+        /* --- HERO IMAGE --- */
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .profile-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+            transition: 0.5s ease;
+        }
+        
+        .image-wrapper:hover .profile-img { filter: grayscale(0%); transform: scale(1.05); }
+
+        /* Rotating Badge */
+        .circle-badge {
+            position: absolute;
+            top: 30px; left: -40px;
+            width: 130px; height: 130px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 10;
+        }
+
+        .circle-badge svg { width: 100%; height: 100%; animation: rotate 15s linear infinite; }
+        .circle-text { font-size: 13px; font-family: var(--font-head); fill: #fff; letter-spacing: 2px; font-weight: 700; }
+        .play-icon { position: absolute; font-size: 1.5rem; color: var(--accent); }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* --- STATS SECTION --- */
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item { text-align: center; }
+        .stat-number { font-family: var(--font-head); font-size: 3.5rem; font-weight: 700; line-height: 1; color: var(--text-main); }
+        .plus { font-family: var(--font-head); font-size: 2rem; color: var(--accent); vertical-align: super;}
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- SECTION HEADERS --- */
+        .section-title {
+            font-family: var(--font-head);
+            font-size: 2.5rem;
+            margin: 0 0 3rem 0;
+            color: var(--text-main);
+        }
+        .section-title span { color: var(--accent); }
+        
+        .section-spacer { margin-top: 8rem; }
+
+        /* --- SKILLS SECTION --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem 4rem;
+        }
+        .skill-item { margin-bottom: 1.5rem; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .skill-name { font-weight: 600; font-size: 1rem; }
+        .skill-percent { color: var(--accent); font-family: var(--font-head); font-weight: 700; }
+        .progress-bar-bg { width: 100%; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: var(--accent); width: 0; border-radius: 10px; }
+
+        /* --- EXPERIENCE SECTION --- */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .job-card {
+            background: rgba(255,255,255,0.03);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            transition: 0.3s;
+        }
+        .job-card:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); }
+        .job-date { color: var(--accent); font-weight: 600; font-size: 0.9rem; font-family: var(--font-head); }
+        .job-role { font-size: 1.3rem; margin-bottom: 0.3rem; font-weight: 600; }
+        .job-company { color: var(--text-muted); margin-bottom: 1rem; display: block; font-size: 0.95rem; }
+        .job-desc { color: #888; font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- PROJECTS SECTION (NEW) --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: #1a1a1a;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            position: relative;
+            group: hover;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .project-thumb {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-thumb img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .view-btn {
+            background: var(--accent);
+            color: #000;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .view-btn {
+            transform: translateY(0);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-tags {
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .project-title {
+            font-family: var(--font-head);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- CONTACT FOOTER --- */
+        .contact-section {
+            margin-top: 8rem;
+            text-align: center;
+            padding: 4rem 0 2rem 0;
+            border-top: 1px solid var(--border);
+        }
+        .contact-head { font-family: var(--font-head); font-size: 3rem; margin-bottom: 2rem; }
+        .email-link { 
+            color: var(--accent); font-size: 1.5rem; text-decoration: none; border-bottom: 1px solid transparent; 
+            transition: 0.3s;
+        }
+        .email-link:hover { border-bottom: 1px solid var(--accent); }
+        .footer-bottom {
+            margin-top: 4rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 900px) {
+            .main-container { width: 100%; border-radius: 0; border: none; padding: 1.5rem; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-headline { font-size: 3rem; }
+            .hero-sub { margin: 0 auto 2rem auto; }
+            .cta-group { justify-content: center; }
+            .circle-badge { left: 50%; transform: translateX(-50%); top: -30px; }
+            .nav-links { display: none; }
+            .stats-row { flex-wrap: wrap; gap: 2rem; justify-content: center; }
+            .skills-grid { grid-template-columns: 1fr; gap: 0; }
+            .job-card { grid-template-columns: 1fr; gap: 0.5rem; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Card Container -->
+    <main class="main-container">
+        
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">BHUPENDRA.</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#work">Projects</a></li>
+            </ul>
+            <a href="mailto:email@example.com" class="btn-cv">Get in Touch</a>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="about" class="hero-grid">
+            <div class="hero-content">
+                <div class="role-badge">
+                    <i class="ri-palette-line"></i> UI/UX & Motion Designer
+                </div>
+                <h1 class="hero-headline">Creating<br><span>Digital Systems</span><br>That Inspire.</h1>
+                <p class="hero-sub">I'm Bhupendra Jadhav. I bridge the gap between static visuals and interactive motion. Currently crafting intuitive e-commerce experiences at <strong>FirstCry</strong>.</p>
+                <div class="cta-group">
+                    <a href="#work" class="btn-primary">View Work</a>
+                    <a href="#skills" class="btn-secondary"><i class="ri-tools-fill"></i> My Skills</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="image-wrapper">
+                    <!-- REPLACE src WITH YOUR FILE NAME 'profile.jpg' -->
+                    <img src="profile.jpg" alt="Bhupendra Jadhav" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'">
+                    <div class="circle-badge">
+                        <svg viewBox="0 0 100 100" width="100" height="100">
+                            <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
+                            <text>
+                                <textPath xlink:href="#circlePath" class="circle-text">• VIEW PROJECTS • SCROLL DOWN •</textPath>
+                            </text>
+                        </svg>
+                        <div class="play-icon"><i class="ri-arrow-down-line"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <div class="stats-row">
+            <div class="stat-item">
+                <span class="stat-number" data-target="4">0</span><span class="plus">+</span>
+                <p class="stat-label">Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="3">0</span>
+                <p class="stat-label">Companies</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="20">0</span><span class="plus">+</span>
+                <p class="stat-label">Projects</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="100">0</span><span class="plus">%</span>
+                <p class="stat-label">Creativity</p>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section-spacer">
+            <h2 class="section-title">Software <span>Stack</span></h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-info"><span class="skill-name">Figma</span><span class="skill-percent">95%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="95%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span class="skill-name">Adobe XD</span><span class="skill-percent">90%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="90%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span class="skill-name">Adobe Photoshop</span><span class="skill-percent">92%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="92%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span class="skill-name">Adobe Illustrator</span><span class="skill-percent">85%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="85%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span class="skill-name">Adobe Premiere Pro</span><span class="skill-percent">80%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="80%"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span class="skill-name">After Effects</span><span class="skill-percent">75%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" data-width="75%"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section-spacer">
+            <h2 class="section-title">Career <span>Timeline</span></h2>
+            <div class="timeline-grid">
+                <div class="job-card">
+                    <div class="job-date">FEB 2022 - PRES</div>
+                    <div class="job-details">
+                        <h3 class="job-role">UI/UX Designer</h3>
+                        <span class="job-company">Brainbees Solution Pvt. Ltd (FirstCry.com)</span>
+                        <p class="job-desc">Designing user-centric interfaces for one of Asia's largest e-commerce platforms. Specialized in UI strategies, social media visuals, and creative email campaigns.</p>
+                    </div>
+                </div>
+                <div class="job-card">
+                    <div class="job-date">JAN 2021 - JAN 2022</div>
+                    <div class="job-details">
+                        <h3 class="job-role">Sr. Graphic Designer</h3>
+                        <span class="job-company">Digipeddle Technology</span>
+                        <p class="job-desc">Led the creative team for social media banners, motion graphics, and video editing. Produced high-converting marketing assets.</p>
+                    </div>
+                </div>
+                <div class="job-card">
+                    <div class="job-date">JAN 2020 - DEC 2020</div>
+                    <div class="job-details">
+                        <h3 class="job-role">Graphics Designer</h3>
+                        <span class="job-company">Ratan J. Batliboi Consultants</span>
+                        <p class="job-desc">Worked on architectural 3D visualization and corporate graphic identity projects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW PROJECTS SECTION -->
+        <section id="work" class="section-spacer">
+            <h2 class="section-title">Selected <span>Works</span></h2>
+            
+            <div class="projects-grid">
+                
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Fintech App">
+                        <div class="project-overlay">
+                            <span class="view-btn">View Case Study</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">UI/UX • Research</span>
+                        <h3 class="project-title">Fintech Dashboard</h3>
+                        <p class="project-desc">A comprehensive financial dashboard design focusing on data visualization and user accessibility.</p>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="E-commerce App">
+                        <div class="project-overlay">
+                            <span class="view-btn">View Case Study</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">App Design • FirstCry</span>
+                        <h3 class="project-title">Nexus E-commerce</h3>
+                        <p class="project-desc">Revamping the mobile shopping experience with streamlined checkout and personalized recommendations.</p>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="project-thumb">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Motion Graphics">
+                        <div class="project-overlay">
+                            <span class="view-btn">Watch Video</span>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tags">Motion • Branding</span>
+                        <h3 class="project-title">Tech Brand Identity</h3>
+                        <p class="project-desc">A dynamic motion identity system including logo animation and social media assets.</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Footer / Contact -->
+        <footer id="contact" class="contact-section">
+            <h2 class="contact-head">Let's build something<br>amazing together.</h2>
+            <a href="mailto:hello@bhupendra.com" class="email-link">hello@bhupendra.com</a>
+            <div class="footer-bottom">
+                <span>© 2025 Bhupendra Jadhav.</span>
+                <div class="socials">
+                    <a href="#" style="color:#888; text-decoration: none; margin-left: 20px;">LinkedIn</a>
+                    <a href="#" style="color:#888; text-decoration: none; margin-left: 20px;">Behance</a>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Entrance Animation
+            const tl = gsap.timeline();
+
+            tl.from(".main-container", { opacity: 0, y: 50, duration: 1, ease: "power3.out" })
+              .from("nav", { y: -20, opacity: 0, duration: 0.8 }, "-=0.5")
+              .from(".role-badge, .hero-headline, .hero-sub, .cta-group", {
+                  y: 30, opacity: 0, stagger: 0.1, duration: 1, ease: "power4.out"
+              }, "-=0.5")
+              .from(".image-wrapper", { scale: 0.9, opacity: 0, duration: 1.2, ease: "power2.out" }, "-=1")
+              .from(".circle-badge", { scale: 0, rotation: -180, duration: 1, ease: "back.out(1.7)" }, "-=0.5")
+              .from(".stat-item", { y: 20, opacity: 0, stagger: 0.1, duration: 0.8 }, "-=0.5");
+
+            // 2. Stats Counter
+            const counters = document.querySelectorAll('.stat-number');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                gsap.to(counter, {
+                    innerHTML: target,
+                    duration: 2,
+                    snap: { innerHTML: 1 },
+                    scrollTrigger: { trigger: ".stats-row", start: "top 80%" }
+                });
+            });
+
+            // 3. Skills Progress Bar
+            gsap.utils.toArray('.progress-bar-fill').forEach(bar => {
+                const targetWidth = bar.getAttribute('data-width');
+                gsap.to(bar, {
+                    width: targetWidth,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    scrollTrigger: { trigger: ".skills-grid", start: "top 80%" }
+                });
+            });
+
+            // 4. Experience Cards
+            gsap.utils.toArray('.job-card').forEach(card => {
+                gsap.from(card, {
+                    scrollTrigger: { trigger: card, start: "top 85%" },
+                    y: 30, opacity: 0, duration: 0.8, ease: "power2.out"
+                });
+            });
+
+            // 5. Projects Animation (NEW)
+            gsap.utils.toArray('.project-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: { trigger: card, start: "top 85%" },
+                    y: 50, opacity: 0, duration: 0.8, delay: i * 0.1, ease: "power2.out"
+                });
+            });
+
+            // 6. Badge Interaction
+            const badge = document.querySelector('.circle-badge');
+            badge.addEventListener('mouseenter', () => gsap.to(badge, { scale: 1.1, duration: 0.3 }));
+            badge.addEventListener('mouseleave', () => gsap.to(badge, { scale: 1, duration: 0.3 }));
+        });
+    </script>
+</body>
+</html>

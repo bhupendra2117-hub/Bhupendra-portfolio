@@ -252,8 +252,8 @@ td{color:var(--cb-text-secondary)}
 .scale-row small{color:var(--cb-text-muted);font-size:12.5px;line-height:1.4}
 @media (max-width:560px){.scale-row{grid-template-columns:76px 40px minmax(0,1fr)}.scale-row small{grid-column:1/-1;margin-top:-4px}}
 /* Spacing + layout panels: same card, same height, headings on one line */
-.space-split{align-items:stretch}
-.space-split>.panel{display:flex;flex-direction:column;gap:14px}
+.space-split{align-items:stretch;--cb-surface:#ffffff;--cb-surface-subtle:#f7f6fb;--cb-border:#e7e7ef;--cb-border-subtle:#f0f0f4;--cb-text:#15151f;--cb-text-secondary:#4c4c5c;--cb-text-muted:#6e6e7e;--cb-primary:#6d3beb;--cb-shadow-color:36 24 68}
+.space-split>.panel{display:flex;flex-direction:column;gap:14px;color:var(--cb-text)}
 .space-split>.panel>.sub{margin:0}
 .space-split .tscroll{border-radius:12px;flex:1}
 .space-split .tscroll table{height:100%}

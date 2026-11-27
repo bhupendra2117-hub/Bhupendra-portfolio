@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects | Bhupendra Jadhav</title>
+
+    <!-- External Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES (Same as Index) --- */
+        :root {
+            --bg-body: #050505;
+            --bg-card: #0e0e0e;
+            --text-main: #ffffff;
+            --text-muted: #9CA3AF;
+            --accent: #977dff;
+            --accent-gradient: linear-gradient(90deg, #0033ff, #977dff, #ffccf2);
+            --accent-dark: #e0b47e;
+            --border: rgba(255, 255, 255, 0.08);
+
+            --font-head: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            min-height: 100vh;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .main-container {
+            width: 95%;
+            max-width: 1400px;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem 4rem;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border);
+            min-height: 95vh;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 3rem 0;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .btn-back {
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-back:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* --- PAGE HEADER --- */
+        .page-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-family: var(--font-head);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* --- FILTERS --- */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--text-main);
+            color: var(--text-main);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-gradient);
+            color: #fff;
+            border-color: transparent;
+            font-weight: 600;
+        }
+
+        /* --- PROJECTS GRID --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* 2 Columns by default */
+            gap: 3rem;
+            padding-bottom: 4rem;
+        }
+
+        .project-card {
+            background-color: #111;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+            position: relative;
+            display: block;
+            /* For filtering logic */
+        }
+
+        /* Hide class for filtering */
+        .project-card.hide {
+            display: none;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+        }
+
+        .project-thumb {
+            width: 100%;
+            height: 350px;
+            /* Taller images for portfolio page */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-thumb img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .view-btn {
+            background: var(--accent-gradient);
+            background-size: 200% auto;
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+
+        .project-card:hover .view-btn {
+            transform: translateY(0);
+        }
+
+        .view-btn:hover {
+            background-position: right center;
+            box-shadow: 0 10px 20px rgba(151, 125, 255, 0.4);
+        }
+
+        .project-info {
+            padding: 1.8rem;
+        }
+
+        .project-tags {
+            font-size: 0.8rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        .project-title {
+            font-family: var(--font-head);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            body {
+                padding: 0;
+            }
+
+            .main-container {
+                width: 100%;
+                border: none;
+                border-radius: 0;
+                padding: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .project-thumb {
+                height: 250px;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .filter-container {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="main-container">
+
+        <!-- Navigation -->
+        <nav>
+            <a href="index.html" class="logo">BHUPENDRA.</a>
+            <a href="index.html" class="btn-back">
+                <i class="ri-home-line"></i> Back to Home
+            </a>
+        </nav>
+
+        <!-- Header -->
+        <header class="page-header">
+            <h1 class="page-title">Selected Works</h1>
+            <p class="page-desc">A curated collection of digital experiences, visual design, and motion projects crafted
+                with precision.</p>
+        </header>
+
+        <!-- Filters: Updated Categories -->
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="uiux">UI/UX Design</button>
+            <button class="filter-btn" data-filter="social">Social Media</button>
+            <button class="filter-btn" data-filter="video">Videos</button>
+            <button class="filter-btn" data-filter="3d">3D Visualisation</button>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="projects-grid">
+
+            <!-- 1. UI/UX Design -->
+            <article class="project-card" data-category="uiux">
+                <div class="project-thumb">
+                    <!-- Replace with your image -->
+                    <img src="Images/Smart Remove Cover.png" alt="Smart Remove">
+                    <div class="project-overlay">
+                        <a href="smart_remove_CS.html" class="view-btn">View Case Study</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-tags">UI/UX • SaaS Platform</span>
+                    <h3 class="project-title">Smart Remove AI</h3>
+                    <p class="project-desc">AI-powered background removal tool designed for high conversion.</p>
+                </div>
+            </article>
+
+            <!-- 2. UI/UX Design -->
+            <article class="project-card" data-category="uiux">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        alt="Nexus E-com">
+                    <div class="project-overlay">
+                        <a href="#" class="view-btn">View Case Study</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-tags">App Design • FirstCry</span>
+                    <h3 class="project-title">Nexus E-Commerce</h3>
+                    <p class="project-desc">Revamping the mobile checkout experience for 1M+ users.</p>
+                </div>
+            </article>
+
+            <!-- 3. Social Media -->
+            <article class="project-card" data-category="social">
+                <div class="project-thumb">
+                    <img src="Images/Fruit/Fruit Thumbnail.png" alt="Instagram Campaign">
+                    <div class="project-overlay">
+                        <a href="fruit2.html" class="view-btn">View Posts</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-tags">Social Media • Branding</span>
+                    <h3 class="project-title">The Superfood Series</h3>
+                    <p class="project-desc">Unlocking the Secrets of Better Health</p>
+                </div>
+            </article>
+
+            <!-- 4. Videos -->
+            <article class="project-card" data-category="video">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        alt="Video Editing">
+                    <div class="project-overlay">
+                        <a href="#" class="view-btn"><i class="ri-play-fill"></i> Watch Reel</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-tags">Video Editing • Motion</span>
+                    <h3 class="project-title">Tech Product Launch</h3>
+                    <p class="project-desc">Promotional video editing and motion graphics for a startup.</p>
+                </div>
+            </article>
+
+            <!-- 5. 3D Visualisation -->
+            <article class="project-card" data-category="3d">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        alt="3D Room">
+                    <div class="project-overlay">
+                        <a href="#" class="view-btn">View Renders</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-tags">3D Visualisation • Architecture</span>
+                    <h3 class="project-title">Modern Workspace</h3>
+                    <p class="project-desc">Photorealistic 3D rendering of an interior office space.</p>
+                </div>
+            </article>
+
+            <!-- 6. Social Media -->
+            <article class="project-card" data-category="social">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        alt="Social Banners">
+                    <div class="project-overlay">
+                        <a href="#" class="view-btn">View Graphics</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-tags">Social Media • Ad Creatives</span>
+                    <h3 class="project-title">Black Friday Ads</h3>
+                    <p class="project-desc">High-CTR ad creatives for Facebook and LinkedIn marketing.</p>
+                </div>
+            </article>
+
+            <!-- 7. Videos -->
+            <article class="project-card" data-category="video">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        alt="Kinetic Typography">
+                    <div class="project-overlay">
+                        <a href="#" class="view-btn"><i class="ri-play-fill"></i> Watch Video</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-tags">Video • Kinetic Typography</span>
+                    <h3 class="project-title">Brand Manifesto</h3>
+                    <p class="project-desc">A typographic motion video explaining core brand values.</p>
+                </div>
+            </article>
+
+            <!-- 8. 3D Visualisation -->
+            <article class="project-card" data-category="3d">
+                <div class="project-thumb">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        alt="3D Product">
+                    <div class="project-overlay">
+                        <a href="#" class="view-btn">View Renders</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <span class="project-tags">3D • Product Design</span>
+                    <h3 class="project-title">Cosmetic Bottle Render</h3>
+                    <p class="project-desc">Studio lighting setup and rendering for product packaging.</p>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-banner">
+            <h2 style="font-family: var(--font-head); font-size: 2rem; margin-bottom: 1rem;">Have a project in mind?
+            </h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">I'm currently open to new opportunities across
+                UI/UX and Motion.</p>
+            <a href="mailto:email@example.com" class="filter-btn active"
+                style="text-decoration: none; display: inline-block;">Start Conversation</a>
+        </div>
+
+        <footer style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 4rem;">
+            <span>© 2025 Bhupendra Jadhav.</span>
+        </footer>
+
+    </main>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // 1. Initial Page Load Animation
+            const tl = gsap.timeline();
+            tl.from(".main-container", { opacity: 0, y: 50, duration: 0.8, ease: "power3.out" })
+                .from(".page-title, .page-desc", { y: 30, opacity: 0, stagger: 0.1, duration: 0.8 }, "-=0.4")
+                .from(".filter-btn", { y: 20, opacity: 0, stagger: 0.05, duration: 0.5 }, "-=0.4")
+                .from(".project-card", {
+                    y: 40, opacity: 0, stagger: 0.1, duration: 0.8, ease: "power2.out"
+                }, "-=0.2");
+
+            // 2. Filter Logic
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Add active to clicked
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // Animation wrapper for filtering
+                    // First fade out
+                    gsap.to(projectCards, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.3,
+                        onComplete: () => {
+                            projectCards.forEach(card => {
+                                const cardCategory = card.getAttribute('data-category');
+
+                                if (filterValue === 'all' || filterValue === cardCategory) {
+                                    card.style.display = 'block'; // Show
+                                } else {
+                                    card.style.display = 'none'; // Hide
+                                }
+                            });
+
+                            // Re-animate visible cards in
+                            const visibleCards = Array.from(projectCards).filter(card => card.style.display !== 'none');
+
+                            gsap.fromTo(visibleCards,
+                                { opacity: 0, y: 30 },
+                                { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: "power2.out" }
+                            );
+
+                            ScrollTrigger.refresh();
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

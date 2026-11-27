@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Remove Case Study | Bhupendra Jadhav</title>
+
+    <!-- External Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --bg-body: #050505;
+            --bg-card: #0e0e0e;
+            --text-main: #ffffff;
+            --text-muted: #9CA3AF;
+            --accent: #977dff;
+            --accent-gradient: linear-gradient(90deg, #0033ff, #977dff, #ffccf2);
+            --border: rgba(255, 255, 255, 0.08);
+
+            --font-head: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            min-height: 100vh;
+        }
+
+        /* --- MAIN CARD --- */
+        .main-container {
+            width: 95%;
+            max-width: 1400px;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem 4rem;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border);
+        }
+
+        /* --- NAV --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 3rem 0;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .btn-back {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* --- HEADER --- */
+        .cs-header {
+            text-align: center;
+            padding: 2rem 0 4rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 4rem;
+        }
+
+        .cs-title {
+            font-family: var(--font-head);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        /* --- INFO GRID --- */
+        .cs-meta-grid {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .meta-item h4 {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-item p {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* --- LIVE BUTTON --- */
+        .btn-live {
+            background: var(--accent-gradient);
+            background-size: 200% auto;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.4s ease;
+        }
+
+        .btn-live:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(151, 125, 255, 0.4);
+        }
+
+        /* --- IMAGE STACK (THE KEY PART) --- */
+        .image-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            /* No gap makes them look like one continuous scroll */
+            width: 100%;
+        }
+
+        .cs-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            /* Slight radius to separate from dark bg */
+        }
+
+        /* Optional: If you want space between the slices */
+        .image-spacer {
+            margin-bottom: 2rem;
+        }
+
+        /* --- NEXT PROJECT --- */
+        .next-project {
+            padding: 6rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 6rem;
+        }
+
+        .next-label {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            width: fit-content;
+            margin: 0 auto;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .next-title {
+            font-family: var(--font-head);
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--text-main);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .next-title:hover {
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .main-container {
+                width: 100%;
+                border: none;
+                border-radius: 0;
+                padding: 1.5rem;
+            }
+
+            .cs-meta-grid {
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .meta-item {
+                width: 45%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="main-container">
+
+        <!-- Navigation -->
+        <nav>
+            <a href="index.html" class="logo">BHUPENDRA.</a>
+            <a href="index.html" class="btn-back"><i class="ri-arrow-left-line"></i> Back to Projects</a>
+        </nav>
+
+        <!-- Header -->
+        <header class="cs-header">
+            <h1 class="cs-title">Smart Remove AI Platform</h1>
+
+            <div class="cs-meta-grid">
+                <div class="meta-item">
+                    <h4>Role</h4>
+                    <p>UI/UX Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Timeline</h4>
+                    <p>4 Weeks</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Tools</h4>
+                    <p>Figma, Photoshop</p>
+                </div>
+            </div>
+
+            <!-- Link to your prototype or live site -->
+            <div class="btn-wrapper">
+                <a href="#" class="btn-live" target="_blank">
+                    View Live Prototype <i class="ri-arrow-right-up-line"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- 
+           CASE STUDY IMAGES 
+           Replace the src with your actual sliced image names.
+           I have set up 3 slots based on your upload (Overview, Process, Visuals).
+        -->
+        <div class="image-stack">
+
+            <!-- Slice 1: Research & Overview -->
+            <img src="Images/Smart Remove 1.png" alt="Project Overview and Research"
+                class="cs-image image-spacer reveal-img">
+
+            <!-- Slice 2: User Flows & Ideation -->
+            <img src="Images/Smart Remove 2.png" alt="User Flows and Sketches" class="cs-image image-spacer reveal-img">
+
+
+        </div>
+
+        <!-- Next Project Navigation -->
+        <div class="next-project reveal-text">
+            <span class="next-label">Next Project</span>
+            <a href="#" class="next-title">Nexus E-Commerce <i class="ri-arrow-right-line"></i></a>
+        </div>
+
+        <footer style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+            <span>© 2025 Bhupendra Jadhav.</span>
+        </footer>
+
+    </main>
+
+    <!-- GSAP Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Header Animation
+            gsap.from(".cs-title, .cs-meta-grid, .btn-wrapper", {
+                y: 30, opacity: 0, stagger: 0.1, duration: 1, ease: "power4.out"
+            });
+
+            // Reveal Images on Scroll
+            gsap.utils.toArray('.reveal-img').forEach(img => {
+                gsap.from(img, {
+                    scrollTrigger: {
+                        trigger: img,
+                        start: "top 85%", // Starts animation when image is 15% from bottom
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: "power2.out"
+                });
+            });
+
+            // Reveal Next Link
+            gsap.from(".next-project", {
+                scrollTrigger: { trigger: ".next-project", start: "top 90%" },
+                y: 30, opacity: 0, duration: 1
+            });
+        });
+    </script>
+</body>
+
+</html>

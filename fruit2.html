@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Design | Bhupendra Jadhav</title>
+
+    <!-- External Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --bg-body: #050505;
+            --bg-card: #0e0e0e;
+            --text-main: #ffffff;
+            --text-muted: #9CA3AF;
+            --accent: #977dff;
+            --accent-gradient: linear-gradient(90deg, #0033ff, #977dff, #ffccf2);
+            --border: rgba(255, 255, 255, 0.08);
+
+            --font-head: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            min-height: 100vh;
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .main-container {
+            width: 95%;
+            max-width: 1400px;
+            background-color: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem 4rem;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 3rem 0;
+        }
+
+        .logo {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .btn-back {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* --- HEADER --- */
+        .cs-header {
+            text-align: center;
+            padding: 2rem 0 4rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 4rem;
+        }
+
+        .cs-title {
+            font-family: var(--font-head);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        /* --- INFO GRID --- */
+        .cs-meta-grid {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .meta-item h4 {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-item p {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        /* --- LIVE BUTTON --- */
+        .btn-live {
+            background: var(--accent-gradient);
+            background-size: 200% auto;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.4s ease;
+        }
+
+        .btn-live:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(151, 125, 255, 0.4);
+        }
+
+        /* --- NEXT PROJECT --- */
+        .next-project {
+            padding: 6rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 6rem;
+        }
+
+        .next-label {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            width: fit-content;
+            margin: 0 auto;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .next-title {
+            font-family: var(--font-head);
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: var(--text-main);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .next-title:hover {
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 900px) {
+            .cs-meta-grid {
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .meta-item {
+                width: 45%;
+            }
+        }
+
+        /* --- STRICT GRID LAYOUT --- */
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            /* Exactly 3 equal columns */
+            gap: 20px;
+            /* Small consistent gap */
+            margin-bottom: 4rem;
+        }
+
+        .grid-item {
+            position: relative;
+            width: 100%;
+            /* This ensures a perfect square aspect ratio (1:1) */
+            aspect-ratio: 1 / 1;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            /* transition: transform 0.3s ease, border-color 0.3s ease; */
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Ensures image fills square without stretching */
+            transition: transform 0.5s ease;
+        }
+
+        /* Hover Effects */
+        .grid-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px -10px rgba(151, 125, 255, 0.4);
+            /* Purple glow */
+        }
+
+
+
+        /* Overlay text on hover */
+        .item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .grid-item:hover .item-overlay {
+            transform: translateY(0);
+        }
+
+        .item-title {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .item-icon {
+            font-size: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--accent);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .design-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 cols on tablet */
+                gap: 15px;
+            }
+
+            .main-container {
+                padding: 2rem;
+                width: 100%;
+                border: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .design-grid {
+                grid-template-columns: 1fr;
+                /* 1 col on mobile */
+            }
+
+            .gallery-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="main-container">
+
+        <!-- Navigation -->
+        <nav>
+            <a href="index.html" class="logo">BHUPENDRA.</a>
+            <a href="index.html" class="btn-back"><i class="ri-arrow-left-line"></i> Back to Projects</a>
+        </nav>
+
+        <!-- Header -->
+        <header class="cs-header">
+            <h1 class="cs-title">The Superfood Series</h1>
+
+            <div class="cs-meta-grid">
+                <div class="meta-item">
+                    <h4>Role</h4>
+                    <p>Visual Design</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Timeline</h4>
+                    <p>2 Weeks</p>
+                </div>
+                <div class="meta-item">
+                    <h4>Tools</h4>
+                    <p>Photoshop, AI</p>
+                </div>
+            </div>
+
+            <div class="btn-wrapper">
+                <a href="#" class="btn-live">
+                    View on Instagram <i class="ri-arrow-right-up-line"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- The 3x3 Grid -->
+        <div class="design-grid">
+
+            <!-- Item 1 -->
+            <div class="grid-item reveal-box">
+                <!-- Replace src with your image -->
+                <img src="Images/Fruit/Apple.jpg" alt="Apple Health Benefits">
+                <div class="item-overlay">
+                    <span class="item-title">Apple a Day</span>
+                    <i class="ri-instagram-line item-icon"></i>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="grid-item reveal-box">
+                <img src="Images/Fruit/Carrot.jpg" alt="Carrot Benefits">
+                <div class="item-overlay">
+                    <span class="item-title">Carrot Power</span>
+                    <i class="ri-instagram-line item-icon"></i>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="grid-item reveal-box">
+                <img src="Images/Fruit/Pineapple.jpg" alt="Pineapple Benefits">
+                <div class="item-overlay">
+                    <span class="item-title">Tropical Gold</span>
+                    <i class="ri-facebook-circle-fill item-icon"></i>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="grid-item reveal-box">
+                <img src="Images/Fruit/Ginger.jpg" alt="Ginger Benefits">
+                <div class="item-overlay">
+                    <span class="item-title">Ginger Roots</span>
+                    <i class="ri-linkedin-fill item-icon"></i>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="grid-item reveal-box">
+                <img src="Images/Fruit/Lemon.jpg" alt="Lemon Benefits">
+                <div class="item-overlay">
+                    <span class="item-title">Zesty Lemon</span>
+                    <i class="ri-instagram-line item-icon"></i>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="grid-item reveal-box">
+                <img src="Images/Fruit/Papaya.jpg" alt="Papaya Benefits">
+                <div class="item-overlay">
+                    <span class="item-title">Papaya Glow</span>
+                    <i class="ri-linkedin-fill item-icon"></i>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="grid-item reveal-box">
+                <img src="Images/Fruit/Almonds.jpg" alt="Almond Benefits">
+                <div class="item-overlay">
+                    <span class="item-title">Nutty Facts</span>
+                    <i class="ri-instagram-line item-icon"></i>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="grid-item reveal-box">
+                <img src="Images/Fruit/Fruit Thumbnail.png" alt="Campaign Overview 1">
+                <div class="item-overlay">
+                    <span class="item-title">Series Overview</span>
+                    <i class="ri-instagram-line item-icon"></i>
+                </div>
+            </div>
+
+            <!-- Item 9 -->
+            <div class="grid-item reveal-box">
+                <img src="Images/Fruit/Fruit Thumbnail 2.png" alt="Campaign Overview 2">
+                <div class="item-overlay">
+                    <span class="item-title">Visual Identity</span>
+                    <i class="ri-instagram-line item-icon"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Next Project Navigation -->
+        <div class="next-project reveal-text">
+            <span class="next-label">Next Project</span>
+            <a href="#" class="next-title">Nexus E-Commerce <i class="ri-arrow-right-line"></i></a>
+        </div>
+
+        <footer style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+            <span>© 2025 Bhupendra Jadhav.</span>
+        </footer>
+
+    </main>
+
+    <!-- GSAP Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline();
+
+            // Header Animation
+            tl.from(".main-container", { opacity: 0, y: 30, duration: 0.8, ease: "power2.out" })
+                .from(".cs-title, .cs-meta-grid, .btn-wrapper", {
+                    y: 30, opacity: 0, stagger: 0.1, duration: 1, ease: "power4.out"
+                }, "-=0.4");
+
+            // Grid Animation (Staggered Pop-in)
+            // gsap.from(".reveal-box", {
+            //     scrollTrigger: { trigger: ".design-grid", start: "top 85%" },
+            //     y: 50,
+            //     scale: 0.9,
+            //     opacity: 0,
+            //     duration: 0.8,
+            //     stagger: 0.1, // This creates the wave effect
+            //     ease: "back.out(1.5)"
+            // });
+        });
+    </script>
+</body>
+
+</html>

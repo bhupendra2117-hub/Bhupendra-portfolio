@@ -83,11 +83,11 @@ code{font-family:var(--mono);font-size:.84em;color:var(--cb-primary)}
 .toc{display:flex;flex-wrap:wrap;justify-content:center;gap:1px;flex:1;min-width:0}
 .toc a{padding:4px 5.5px;border-radius:7px;color:var(--cb-text-secondary);text-decoration:none;font-size:11px;font-weight:600;white-space:nowrap;transition:background .15s,color .15s}
 .toc a:hover{background:var(--cb-primary-soft);color:var(--cb-primary)}
-.switch{display:inline-flex;gap:2px;padding:3px;height:32px;border:1px solid var(--cb-border);border-radius:999px;background:var(--cb-surface-subtle);flex:none}
-.switch button{border:0;background:transparent;height:24px;padding:0 9px;border-radius:999px;color:var(--cb-text-muted);font-size:11px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.switch{display:inline-flex;gap:3px;padding:3px;height:34px;border:1px solid var(--cb-border);border-radius:999px;background:var(--cb-surface-subtle);flex:none}
+.switch button{border:0;background:transparent;width:28px;height:26px;padding:0;border-radius:999px;color:var(--cb-text-muted);font-size:13px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.switch button span{display:none}
 .switch button[aria-pressed="true"]{background:var(--cb-primary);color:#fff}
 @media (max-width:900px){.toc{display:none}.brand{flex:1}}
-@media (max-width:420px){.switch button span{display:none}}
 
 /* Page layout */
 .wrap{max-width:1240px;margin:0 auto;padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px)}
@@ -751,8 +751,8 @@ footer{padding-block:32px 56px;border-top:1px solid var(--cb-border-subtle);colo
     <a href="#quality">Quality</a><a href="#rules">Rules</a><a href="#outcomes">Outcomes</a>
   </nav>
   <div class="switch" role="group" aria-label="Theme">
-    <button type="button" data-set-theme="light" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg><span>Light</span></button>
-    <button type="button" data-set-theme="dark" aria-pressed="false"><svg class="i" aria-hidden="true"><use href="#i-moon"/></svg><span>Dark</span></button>
+    <button type="button" data-set-theme="light" aria-pressed="false" aria-label="Light theme" title="Light"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg><span>Light</span></button>
+    <button type="button" data-set-theme="dark" aria-pressed="false" aria-label="Dark theme" title="Dark"><svg class="i" aria-hidden="true"><use href="#i-moon"/></svg><span>Dark</span></button>
   </div>
 </header>
 

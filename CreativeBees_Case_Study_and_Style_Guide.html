@@ -651,10 +651,13 @@ footer{padding-block:32px 56px;border-top:1px solid var(--cb-border-subtle);colo
 .ha-badge{font-size:10px;font-weight:700;padding:4px 9px;border-radius:999px;border:1px solid var(--cb-border);color:var(--cb-text-muted)}
 .ha-stage{aspect-ratio:4/3;border-radius:16px;background:var(--cb-stage-well);border:1px solid var(--cb-stage-border);display:grid;place-items:center;overflow:hidden;position:relative}
 .ha-stage::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,color-mix(in srgb,var(--cb-primary) 16%,transparent) 50%,transparent 65%);background-size:250% 100%;animation:haSweep 3.2s ease-in-out infinite}
-.ha-figure{width:46%;height:76%;border-radius:14px;background:linear-gradient(160deg,#ffffff,#d8dcec);display:grid;place-items:center;color:#4c4c5c;font-size:46px;box-shadow:0 14px 30px rgb(var(--cb-shadow-color) / .18)}
+.ha-figure{width:76%;height:86%;border-radius:14px;overflow:hidden;background:#f4f2ee;display:grid;place-items:center;box-shadow:0 14px 30px rgb(var(--cb-shadow-color) / .22)}
+.ha-figure img{width:100%;height:100%;object-fit:cover;display:block}
 .ha-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.ha-slots span{aspect-ratio:1;border-radius:10px;border:1px solid var(--cb-border);background:var(--cb-surface-subtle)}
+.ha-slots span{aspect-ratio:1;border-radius:10px;border:1px solid var(--cb-border);background:var(--cb-surface-subtle);overflow:hidden;display:block}
 .ha-slots .done{border-color:color-mix(in srgb,var(--cb-primary) 55%,transparent);background:linear-gradient(160deg,var(--cb-primary-soft),color-mix(in srgb,var(--cb-warning) 14%,var(--cb-surface)))}
+.ha-slots .done.selected{border:2px solid var(--cb-primary);box-shadow:0 0 0 2px color-mix(in srgb,var(--cb-primary) 22%,transparent)}
+.ha-slots span img{width:100%;height:100%;object-fit:cover;display:block}
 .ha-slots .run{border:1.5px dashed var(--cb-primary);background:var(--cb-primary-soft);animation:haPulse 1.6s ease-in-out infinite}
 .ha-gen{height:42px;border-radius:11px;background:var(--cb-primary);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:700;box-shadow:0 10px 22px color-mix(in srgb,var(--cb-primary) 30%,transparent)}
 .ha-float{position:absolute;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:12px;background:var(--cb-surface-elevated);border:1px solid var(--cb-border);box-shadow:0 16px 36px rgb(var(--cb-shadow-color) / .18);font-size:12px;font-weight:700;color:var(--cb-text);white-space:nowrap;animation:haFloat 6s ease-in-out infinite}
@@ -776,8 +779,8 @@ footer{padding-block:32px 56px;border-top:1px solid var(--cb-border-subtle);colo
       <div class="ha-glow"></div>
       <div class="ha-card">
         <div class="ha-top"><div><span class="ha-eb">AI commerce catalog</span><b>Product Refinement</b></div><span class="ha-badge">Gemini</span></div>
-        <div class="ha-stage"><div class="ha-figure"><svg class="i" aria-hidden="true"><use href="#i-shirt"/></svg></div></div>
-        <div class="ha-slots"><span class="done"></span><span class="done"></span><span class="run"></span><span></span></div>
+        <div class="ha-stage"><div class="ha-figure"><img src="Images/flatlay-tshirt.jpg" alt="Flatlay T-shirt product"></div></div>
+        <div class="ha-slots"><span class="done selected"><img src="Images/flatlay-tshirt.jpg" alt="Selected variation"></span><span class="done"></span><span class="run"></span><span></span></div>
         <div class="ha-gen"><svg class="i" aria-hidden="true"><use href="#i-wand"/></svg>Generate variations</div>
       </div>
       <div class="ha-float f1"><span class="ha-pulse"></span>Generating 3 / 8</div>

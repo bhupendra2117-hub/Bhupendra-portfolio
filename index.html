@@ -450,7 +450,7 @@
         /* --- PROJECTS SECTION --- */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
             gap: 2rem;
         }
 
@@ -591,7 +591,17 @@
             font-size: 0.85rem;
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
+        /* --- TABLET & MOBILE RESPONSIVENESS --- */
+        @media (max-width: 1100px) {
+            .main-container {
+                padding: 2rem;
+            }
+
+            .hero-grid {
+                gap: 2.5rem;
+            }
+        }
+
         @media (max-width: 900px) {
             body {
                 padding: 0;
@@ -629,6 +639,12 @@
 
             .cta-group {
                 justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .section-spacer,
+            .contact-section {
+                margin-top: 5rem;
             }
 
             .image-wrapper {
